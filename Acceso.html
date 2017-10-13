@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Acceso</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<script>
+	$(function(){
+
+		$('#submit').click(function(){
+			
+			var values = $('#form :input');
+			var nombre = values[0].value;
+			var password = values[1].value;
+
+			$.post("control/ConsultAdm.php",{ nombre: nombre, password: password},function(data){
+				if(data == "access")
+					window.location="Administrador.php";
+				else{
+					$('#divInfo').css("display","block");
+					$('#info').html("Error: Datos incorrectos");
+				}
+
+			});
+
+		});
+
+	});
+	</script>
+
+</head>
+<body>	
+	<div class="container">
+		<div class="jumbotron">
+			<div class="main container">
+				<div class="col-md-6">
+					<h1>Acceso Administrador</h1>
+					<form id="form">
+						<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1">  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> </span>
+						  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1">  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></span>
+							<input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+						</div>
+						<br>
+						<div class="row" style="display:none;" id="divInfo">
+							<div class="col-md-12">
+								<div class="alert alert-danger" >
+									<button class="close" data-dismiss="alert"><span>&times;</span></button>
+									<strong id="info">Alerta!</strong>
+								</div>
+							</div>
+						</div>
+						<input id="submit" type="button" value="Entrar" class="btn btn-primary pull-right">
+					</form>
+		
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br>
+<footer class="footer navbar-default">
+      <div class="container">
+
+      	<div class="row">
+      		
+      		<div class="col-md-6">
+      			<br>
+      			<address>
+				  <strong>BUAP Facultad de Computación</strong><br>
+				  México. Puebla, Pue.<br>
+				  Lucero Rojas Santiago <br>
+				  Telefono: +52 (044) 2271001401<br>
+				</address>
+
+				<address>
+				  <strong>E-mail</strong><br>
+				  <a href="mailto:#">lucero_mlaurc@hotmail.es</a>
+				</address>
+
+				<ul class="list-inline">
+		      		<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+		      		<li><a  href="mailto:#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a></li>
+		      		<li><a href="administrador.php"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+		      	</ul>
+      		</div>
+
+      		<div class="col-md-6">
+      			<br>
+      			<ul class="list-inline text-right">
+		      		<li><a href="https://es-la.facebook.com/"><img src="icons/facebook-icon.png" alt=""></a></li>
+		      		<li><a href="https://www.google.com.mx/"><img src="icons/google-plus-icon.png" alt=""></a></li>
+		      		<li><a href="https://twitter.com/?lang=es"><img src="icons/Instagram-icon.png" alt=""></a></li>
+		      	</ul>
+		      	
+      		</div>
+
+      	</div>
+      	
+      </div>
+    </footer>
+
+	<script src ="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
